@@ -14,8 +14,8 @@ import Model.*;
  */
 public class ShiftDispenser {
     
-    private Queue queue;
-    private int currentShift=1;
+    Queue queue=new Queue();
+    private static int currentShift=1;
     
     /**
      * Returns the queue of the Shift Dispenser
@@ -56,7 +56,6 @@ public class ShiftDispenser {
      */
     public java.util.Iterator queueUp(Shift shift){
         shift.setId(currentShift);
-        queue=new Queue();
         queue.add(shift);
         currentShift++;
         return queue.iterator();
