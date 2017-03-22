@@ -89,6 +89,7 @@ public class Queue {
 
     /**
      * Method to get an Iterator about the queue
+     *
      * @return Iterator -- Iterator about the queue
      */
     public java.util.Iterator iterator() {

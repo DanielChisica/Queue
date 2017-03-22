@@ -7,13 +7,20 @@ package View;
 
 import Controller.ShiftDispenser;
 import Model.Shift;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Configurates the graphical user interface of the Shift Dispenser, allowing to
+ * the user to see the shifts and order a shift
  *
- * @author danie_000
+ * @author Daniel Jiménez Chísica
+ * @since 20 March 2017
  */
 public class ShiftDispenserGUI extends javax.swing.JFrame {
 
@@ -22,6 +29,7 @@ public class ShiftDispenserGUI extends javax.swing.JFrame {
      */
     public ShiftDispenserGUI() {
         initComponents();
+        this.setTitle("Shift Dispenser");
     }
 
     /**
@@ -41,6 +49,7 @@ public class ShiftDispenserGUI extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -102,9 +111,9 @@ public class ShiftDispenserGUI extends javax.swing.JFrame {
                             .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,6 +142,13 @@ public class ShiftDispenserGUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable2);
 
+        jButton1.setText("Next shift");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,64 +157,106 @@ public class ShiftDispenserGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Queue a shift with the concept described on the button and paints the
+     * table
+     *
+     * @param evt The right-click event on the button
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-          paint(shiftdispenser1.queueUp(new Shift(jButton2.getText())));       
-          
+        paint(shiftdispenser1.queueUp(new Shift(jButton2.getText())));
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Queue a shift with the concept described on the button and paints the
+     * table
+     *
+     * @param evt The right-click event on the button
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         paint( shiftdispenser1.queueUp(new Shift(jButton3.getText())));
+        paint(shiftdispenser1.queueUp(new Shift(jButton3.getText())));
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Queue a shift with the concept described on the button and paints the
+     * table
+     *
+     * @param evt The right-click event on the button
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         paint(shiftdispenser1.queueUp(new Shift(jButton4.getText())));
+        paint(shiftdispenser1.queueUp(new Shift(jButton4.getText())));
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Queues a shift with the concept described on the button and paints the
+     * table
+     *
+     * @param evt The right-click event on the button
+     */
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-         paint(shiftdispenser1.queueUp(new Shift(jButton5.getText())));
+        paint(shiftdispenser1.queueUp(new Shift(jButton5.getText())));
     }//GEN-LAST:event_jButton5ActionPerformed
-    
-    public void paint(Iterator it1){
-         Iterator it=it1;
-        DefaultTableModel model=new DefaultTableModel();
-        
+
+    /**
+     * Unpacks the current shift of the queue and paints the table
+     *
+     * @param evt The right-click event on the button
+     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        paint(shiftdispenser1.unPack());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    /**
+     * Paints the table that represents the shifts on screen
+     *
+     * @param it1 An iterator about the queue of shifts
+     */
+    public void paint(Iterator it1) {
+        Iterator it = it1;
+        DefaultTableModel model = new DefaultTableModel();
+
         model.addColumn("Id");
         model.addColumn("Concept");
-        
-        while (it.hasNext()) {  
-          Shift sh=(Shift) it.next();
-            String[] data=new String[2];
-            data[0]=Integer.toString(sh.getId());
-            data[1]=sh.getConcept();
-            
-           model.addRow(data);
-            
-            
+
+        while (it.hasNext()) {
+            Shift sh = (Shift) it.next();
+            String[] data = new String[2];
+            data[0] = Integer.toString(sh.getId());
+            data[1] = sh.getConcept();
+
+            model.addRow(data);
+
         }
-        
+
         jTable2.setModel(model);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -232,11 +290,14 @@ public class ShiftDispenserGUI extends javax.swing.JFrame {
                 new ShiftDispenserGUI().setVisible(true);
             }
         });
+
     }
-    
-    ShiftDispenser shiftdispenser1=new ShiftDispenser();
+
+    ShiftDispenser shiftdispenser1 = new ShiftDispenser();
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

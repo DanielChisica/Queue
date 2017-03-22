@@ -19,7 +19,7 @@ public class Node<T> {
      * The constructor can build the node with the input attributes
      *
      * @param element The object of the node
-     * @param next
+     * @param next The next element
      */
     public Node(T element, T next) {
         this.element = element;
